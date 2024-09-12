@@ -21,6 +21,7 @@ export class DeleteDialogComponent implements OnInit {
   deleteBooking(){
     if(this.selectedRow){
       this.bookingService.deleteBooking(this.selectedRow._id).subscribe(res => {
+        console.log('res', res);
         this.dialogRef.close();
       })
     }
