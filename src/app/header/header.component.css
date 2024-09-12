@@ -1,0 +1,29 @@
+.mat-toolbar{
+  background-color: rgb(89, 87, 42);
+  background-color: #244855;
+  color: rgb(245, 214, 12);
+  font-weight: 500;
+}
+.brand-logo{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logout-btn{
+  margin-right: 100px;
+  background-color: black;
+  color: white;
+  margin-left: 20px;
+}
+.signup-link{
+  color: yellow;
+}
+
+

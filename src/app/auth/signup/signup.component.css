@@ -1,0 +1,30 @@
+mat-form-field{
+  width: 100%;
+}
+
+mat-card{
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #46344E;
+}
+
+mat-spinner{
+  margin: auto;
+ }
+.login-text{
+  text-align: center;
+  font-weight: 600;
+  color: white;
+  font-size: 22px;
+}
+
+.login-btn{
+  margin-top: 20px;
+  color: white;
+  font-weight: 500;
+}
+
+.login-link{
+  color: rgb(84, 84, 227);
+}

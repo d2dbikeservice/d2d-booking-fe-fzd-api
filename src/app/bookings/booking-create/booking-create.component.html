@@ -1,0 +1,72 @@
+<mat-dialog-actions>
+  <h2 mat-dialog-title>{{ data.type }} Booking</h2>
+  <div>
+    <button mat-raised-button mat-dialog-close class="close-btn">Close</button>
+    <button mat-button cdkFocusInitial (click)="resetForm()"  >Clear</button>
+  </div>
+</mat-dialog-actions>
+<mat-dialog-content>
+  <form
+    [formGroup]="taskForm"
+    (ngSubmit)="addTask()"
+    class="task-form signup-form"
+  >
+    <mat-form-field class="task-field">
+      <mat-label>Customer Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Text"
+        id="customerName"
+        formControlName="customerName"
+        type="text"
+        name="customerName"
+      />
+    </mat-form-field>
+    <mat-form-field class="task-field">
+      <mat-label>Vehicle Model</mat-label>
+      <input
+        matInput
+        placeholder="Enter Text"
+        id="vehicleModel"
+        formControlName="vehicleModel"
+        type="text"
+        name="vehicleModel"
+      />
+    </mat-form-field>
+    <mat-form-field class="task-field">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        placeholder="Enter Text"
+        id="address"
+        formControlName="address"
+        type="text"
+        name="address"
+      />
+    </mat-form-field>
+    <mat-form-field class="task-field">
+      <mat-label>Contact</mat-label>
+      <input
+
+        matInput
+        placeholder="Enter Text"
+        id="contact"
+        formControlName="contact"
+        type="text"
+        name="contact"
+      />
+      <mat-error *ngIf="taskForm.get('contact')?.touched && taskForm.get('contact')?.hasError('required')"> Contact is Required!</mat-error>
+      <mat-error *ngIf="taskForm.get('contact')?.touched && taskForm.get('contact')?.hasError('pattern')"> Contact must be 10 digits.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="task-field">
+      <mat-label>Booking Date</mat-label>
+      <input matInput [matDatepicker]="picker" name="serviceScheduledDate" formControlName="serviceScheduledDate" />
+      <mat-hint>DD/MM/YYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button class="submit-btn">
+      {{ data.type == "Add" ? "Book Service" : "Update Service" }}
+    </button>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,22 @@
+.view-box{
+  background-color: rgb(222, 181, 119);
+  padding: 30px 10px;
+  color: white;
+}
+.row-title{
+  color: black;
+}
+
+.view-row td{
+  border: 1px solid white;
+  padding: 5px;
+}
+.close-btn{
+  /* right: 0px; */
+}
+.close-btn-box{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 5px;
+  cursor: pointer;
+}

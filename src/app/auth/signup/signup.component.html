@@ -1,0 +1,41 @@
+<mat-card>
+  <h3 class="login-text">Signup</h3>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <form  (submit)="onSignup(signupForm)" #signupForm="ngForm" >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput name="userName" ngModel required  type="text" #nameInput="ngModel"
+       required placeholder="Full Name">
+      <mat-error *ngIf="nameInput.invalid">Please enter a name.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <input matInput name="userRole" ngModel required type="text" #roleInput="ngModel" required placeholder="Role">
+      <mat-error *ngIf="roleInput.invalid">Please enter a role.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput name="userEmail" ngModel required email  type="email" #emailInput="ngModel" required email placeholder="E-Mail">
+      <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput name="password" ngModel required  type="password"
+      #passwordInput="ngModel"
+      required
+      placeholder="Password">
+      <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent">Signup</button>
+  </form>
+  <div class="login-btn">
+    <p>Already a member?
+      <a routerLink="/login" class="login-link">Login</a>
+    </p>
+  </div>
+</mat-card>

@@ -1,0 +1,40 @@
+<!-- <div class="bill-container">
+  <header>
+    <p class="bill-text">Bill Invoice</p>
+    <div class="logo-box">
+
+      <img src="../../../assets/brand-logo.jpeg" alt="Company Logo" class="logo">
+      <h6>D2D Bike Service</h6>
+    </div>
+    <label>Address:</label>
+    <span>Beniganj Rampath, Ayodhya</span>
+    <br>
+    <label>Contact:</label>
+    <span>8587078424</span>
+  </header>
+
+  <section>
+    <label>Customer Name:</label> {{customerDetails.customerName}}
+    <br>
+    <label>Vehicle Model:</label> {{customerDetails.vehicleModel}}
+  </section>
+
+  <form #billForm="ngForm">
+    <div *ngFor="let item of items; let i = index">
+      <div class="bill-item">
+        <input type="text" [(ngModel)]="item.description" name="description{{i}}" placeholder="Item Description" required>
+        <input type="number" [(ngModel)]="item.amount" name="amount{{i}}" (input)="updateTotal()" placeholder="Amount" required>
+        <button type="button" (click)="removeItem(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addItem()">+ Add Item</button>
+
+    <div class="total">
+      <strong>Total:</strong>
+      <span>{{ total | currency }}</span>
+    </div>
+  </form>
+
+
+  <button (click)="generatePDF()">Download PDF</button>
+</div> -->

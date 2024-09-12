@@ -1,0 +1,18 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" #tabGroup (selectedTabChange)="tabChanged($event)">
+  <mat-tab label="Bookings">
+    <app-booking-list [clickSubject]="clickSubject"  [tabName]="'Bookings'"></app-booking-list>
+  </mat-tab>
+  <mat-tab label="Todays Service">
+    <app-booking-list [clickSubject]="clickSubject" [tabName]="'Todays Service'"></app-booking-list>
+  </mat-tab>
+  <mat-tab label="Completed Service">
+    <app-booking-list [clickSubject]="clickSubject"
+   [tabName]="'Completed Service'"
+     ></app-booking-list>
+    </mat-tab>
+</mat-tab-group>
+
+
+
+
+

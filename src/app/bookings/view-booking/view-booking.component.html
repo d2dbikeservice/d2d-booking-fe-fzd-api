@@ -1,0 +1,11 @@
+ <div class="view-box" >
+  <div class="close-btn-box">
+    <mat-icon class="close-btn" mat-dialog-close aria-hidden="false" aria-label="Example home icon"  fontIcon="close"></mat-icon>
+  </div>
+  <tr class="view-row" *ngFor="let entry of createdData">
+    <td class="row-title">{{entry.name | titlecase}} :</td>
+    <td>{{ !entry.value ?  '-'  : entry.value.toString() | titlecase }}</td>
+  </tr>
+</div>
+
+

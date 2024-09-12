@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color:red;
+  background-color: green;
+  }
+.mat-tab-list .mat-tab-labels {
+  color:blue;
+  background-color: yellow;
+  }
+
+.body-color{
+  background-color: #9B786F;
+}
+
+
+.mat-tab-label {
+  color: #555; /* Replace with your desired color */
+}
+
+/* Change the color of the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  color: #007bff; /* Replace with your desired color */
+  background-color: #e7f1ff; /* Background color for active tab */
+  border-bottom: 3px solid #007bff; /* Border for active tab */
+}
+
+/* Optional: Add a bottom border for inactive tabs */
+.mat-tab-label {
+  border-bottom: 1px solid #ddd; /* Replace with your desired border color */
+}
+
+app-booking-landing .mat-tab-label.mat-tab-label-active {
+  padding: 0px 15px ;
+justify-content: flex-start;
+color: red !important;
+}
+
+app-booking-landing .mat-tab-label{
+  padding: 0px 15px ;
+justify-content: flex-start;
+color: red !important;
+}
+
+.dialog-responsive{
+  width: 80% !important;
+  background-color: green;
+  padding: 30px;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  /* --mat-tab-header-active-focus-label-text-color: red; */
+  --mat-tab-header-active-label-text-color : white !important;
+  --mat-tab-header-inactive-label-text-color: rgb(0 0 0 / 60%);
+  --mat-tab-header-inactive-focus-label-text-color: yellow !important;
+  --mat-tab-header-inactive-hover-label-text-color : yellow !important;
+  --mdc-tab-indicator-active-indicator-color: white;
+  --mat-tab-header-active-hover-label-text-color: yellow !important;
+  --mat-tab-header-active-ripple-color: #c2185b;
+  --mat-tab-header-inactive-ripple-color: #232222;
+}
+

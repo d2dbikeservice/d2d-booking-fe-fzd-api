@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <img src="assets/brand-logo.jpeg" class="brand-logo" alt="d2d-logo" />
+  <span>D2D Bike Service </span>
+  <span class="example-spacer"></span>
+  <div *ngIf="userIsAuthencated">
+    <span>Welcome {{userName}}</span>
+    <button  mat-raised-button class="logout-btn" (click)="logout()">Logout</button>
+    <a routerLink="/signup" class="signup-link">Signup</a>
+
+  </div>
+
+</mat-toolbar>

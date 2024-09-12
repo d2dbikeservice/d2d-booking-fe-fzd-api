@@ -1,0 +1,122 @@
+<!-- <mat-card> -->
+  <div class="lable-box">
+  <div class="header">
+    <mat-form-field >
+      <input matInput class="search-input" (keyup)="search($event)" [(ngModel)]="searchText"  placeholder="Type to Search" />
+      <mat-icon (click)="clearSearch()" class="close-btn" aria-hidden="false" aria-label="Example home icon"  fontIcon="close"></mat-icon>
+
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="success"
+      (click)="addTask()"
+      class="add-btn"
+    >
+      + Add Booking
+    </button>
+
+  </div>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <mat-card-content *ngIf="!isLoading">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="S.No.">
+        <th mat-header-cell *matHeaderCellDef>S.No.</th>
+        <td mat-cell *matCellDef="let element;let ind = index">
+          <span *ngIf="element.isNewBooking" class="new-icon"></span>
+          <span *ngIf="!element.isNewBooking" class="new-icon1"></span>
+          {{ ind+1 }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <span *ngIf="element.isNewBooking" class="new-icon"></span>
+          <span *ngIf="!element.isNewBooking" class="new-icon1"></span> -->
+          {{ element.customerName | titlecase }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicleModel">
+        <th mat-header-cell *matHeaderCellDef>Vehicle Model</th>
+        <td mat-cell *matCellDef="let element">{{ element.vehicleModel | titlecase }}</td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address | titlecase }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="status-color" [ngClass]="getStatusColor(element.status)">
+
+            {{ element.status | titlecase }}
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Service Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.serviceScheduledDate | date:'d MMM, y' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef>Contact</th>
+        <td mat-cell *matCellDef="let element">{{ element.contact }}
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="assignedMechanic" *ngIf="tabName == 'Todays Service'">
+        <th mat-header-cell *matHeaderCellDef>Assigned Mechanic</th>
+        <td mat-cell *matCellDef="let element">{{ element.assignedMechanic | titlecase }}
+
+        </td>
+      </ng-container>
+      "", "totalBillAmount", "",
+      <ng-container matColumnDef="isBillPaid" *ngIf="tabName == 'Completed Service'">
+        <th mat-header-cell *matHeaderCellDef>Bill Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.isBillPaid | titlecase }}
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalBillAmount" *ngIf="tabName == 'Completed Service'">
+        <th mat-header-cell *matHeaderCellDef>Total Bill</th>
+        <td mat-cell *matCellDef="let element">{{ element.totalBillAmount }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalPaidAmount" *ngIf="tabName == 'Completed Service'">
+        <th mat-header-cell *matHeaderCellDef>Total Paid</th>
+        <td mat-cell *matCellDef="let element">{{ element.totalPaidAmount }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element" class="action-container">
+          <mat-icon class="edit-btn" aria-hidden="false" aria-label="Example home icon" (click)="editTask(element); $event.stopPropagation();" fontIcon="edit"></mat-icon>
+          <mat-icon class="delete-btn" aria-hidden="false" aria-label="Example home icon" (click)="deleteTask(element); $event.stopPropagation();" fontIcon="delete"></mat-icon>
+          <a (click)="$event.stopPropagation()" target="_blank" [href]="'https://api.whatsapp.com/send?phone=91' + element.contact">
+            <img src="../../../assets/images/whatsapp-icon.png" class="whatsapp-icon" />
+        </a>
+        </td>
+      </ng-container>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell no-results" [attr.colspan]="displayedColumns.length">
+          No Booking Added yet!!!
+        </td>
+      </tr>
+      <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr class="table-body-tr" mat-row *matRowDef="let row; columns: displayedColumns"
+      (click)="markAsOld(row)"
+      ></tr>
+
+    </table>
+  </mat-card-content>
+  <mat-card-footer >
+    <mat-paginator
+      [pageSizeOptions]="[10, 25, 50, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </mat-card-footer>
+</div>
+<!-- </mat-card> -->

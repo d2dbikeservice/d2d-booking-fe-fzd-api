@@ -1,0 +1,177 @@
+<mat-dialog-actions>
+    <h2 mat-dialog-title>{{ data.type }} Booking</h2>
+    <div>
+      <button mat-raised-button mat-dialog-close class="close-btn">Close</button>
+      <!-- <button mat-button cdkFocusInitial (click)="resetForm()"  >Clear</button> -->
+    </div>
+
+  </mat-dialog-actions>
+  <mat-dialog-content>
+    <form
+      [formGroup]="taskForm"
+      (ngSubmit)="addTask()"
+      class="task-form signup-form"
+    >
+      <mat-form-field class="task-field">
+        <mat-label>Customer Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="customerName"
+          formControlName="customerName"
+          type="text"
+          name="customerName"
+        />
+      </mat-form-field>
+      <mat-form-field class="task-field">
+        <mat-label>Vehicle Model</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="vehicleModel"
+          formControlName="vehicleModel"
+          type="text"
+          name="vehicleModel"
+        />
+      </mat-form-field>
+      <mat-form-field class="task-field">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="address"
+          formControlName="address"
+          type="text"
+          name="address"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Contact</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="contact"
+          formControlName="contact"
+          type="number"
+          name="contact"
+        />
+      </mat-form-field>
+
+      <!-- <mat-form-field class="task-field">
+        <mat-label>Status</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="status"
+          formControlName="status"
+          type="text"
+          name="status"
+        />
+      </mat-form-field> -->
+      <mat-form-field class="task-field">
+        <mat-label>Status</mat-label>
+        <mat-select id="status" formControlName="status">
+          <mat-option *ngFor="let statusItem of statusOptionsArray"
+           [value]="statusItem.label">{{statusItem.label}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Assigned Mechanic</mat-label>
+        <mat-select id="status" formControlName="assignedMechanic">
+          <mat-option *ngFor="let mechanic of mechanicList"
+           [value]="mechanic">{{mechanic}}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Bill Status</mat-label>
+        <mat-select id="isBillPaid" formControlName="isBillPaid">
+          <mat-option value="Paid Cash" >Paid Cash</mat-option>
+          <mat-option value="Paid Online" >Paid Online</mat-option>
+          <mat-option value="Pending">Pending</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Bill Amount</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="totalBillAmount"
+          formControlName="totalBillAmount"
+          type="text"
+          name="totalBillAmount"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Paid Amount</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="totalPaidAmount"
+          formControlName="totalPaidAmount"
+          type="text"
+          name="totalPaidAmount"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Enquiry Date</mat-label>
+        <input matInput [matDatepicker]="picker" name="serviceEnquiryDate" formControlName="serviceEnquiryDate" />
+        <mat-hint>DD/MM/YYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Scheduled Date</mat-label>
+        <input matInput [matDatepicker]="scheduledDate" name="serviceScheduledDate" formControlName="serviceScheduledDate" />
+        <mat-hint>DD/MM/YYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="scheduledDate"></mat-datepicker-toggle>
+        <mat-datepicker #scheduledDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Completed Date</mat-label>
+        <input matInput [matDatepicker]="completedDate" name="serviceCompletedDate" formControlName="serviceCompletedDate" />
+        <mat-hint>DD/MM/YYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="completedDate"></mat-datepicker-toggle>
+        <mat-datepicker #completedDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="task-field">
+        <mat-label>Comment</mat-label>
+        <input
+          matInput
+          placeholder="Enter Text"
+          id="comment"
+          formControlName="comment"
+          type="text"
+          name="comment"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button class="submit-btn">
+        {{ data.type == "Add" ? "Book Service" : "Update Service" }}
+      </button>
+    </form>
+  </mat-dialog-content>
+
+
+<!-- address: "Beniganj"
+city: "ayodhya"
+contact: "7905588677"
+customerName: "Sachin"
+serviceScheduledDate: "serviceScheduledDate"
+
+serviceCompletedDate: "serviceCompletedDate"
+isBillPaid: ""
+status: "enquiry"
+totalBillAmount: 0
+totalPaidAmount: 0
+vehicleModel: "Pulsar" -->

@@ -1,0 +1,53 @@
+.mat-tab-label {
+  color: #555; /* Replace with your desired color */
+}
+
+/* Change the color of the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  color: #007bff; /* Replace with your desired color */
+  background-color: #e7f1ff; /* Background color for active tab */
+  border-bottom: 3px solid #007bff; /* Border for active tab */
+}
+
+/* Optional: Add a bottom border for inactive tabs */
+.mat-tab-label {
+  border-bottom: 1px solid #ddd; /* Replace with your desired border color */
+}
+.welcome-text{
+  color: yellow;
+}
+
+.mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: red;
+  font-weight: 700;
+}
+
+.mat-tab-labels, .mat-tab-label, .mat-tab-link {
+  color: white;
+  font-size: 16px;
+  background-color: #804A71;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  background: white;
+  height: 5px;
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  /* --mat-tab-header-active-focus-label-text-color: red; */
+  --mat-tab-header-active-label-text-color : white;
+  --mat-tab-header-inactive-label-text-color: rgb(0 0 0 / 60%);
+  --mat-tab-header-inactive-focus-label-text-color: yellow;
+  --mat-tab-header-inactive-hover-label-text-color : yellow;
+  --mdc-tab-indicator-active-indicator-color: white;
+  --mat-tab-header-active-hover-label-text-color: yellow;
+  --mat-tab-header-active-ripple-color: #c2185b;
+  --mat-tab-header-inactive-ripple-color: #232222;
+}
+
+
+
+
