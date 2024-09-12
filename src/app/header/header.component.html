@@ -3,9 +3,9 @@
   <span>D2D Bike Service </span>
   <span class="example-spacer"></span>
   <div *ngIf="userIsAuthencated">
-    <span>Welcome {{userName}}</span>
+    <span class="user-name">Welcome {{userName}}</span>
     <button  mat-raised-button class="logout-btn" (click)="logout()">Logout</button>
-    <a *ngIf="userName == 'Super Admin'" routerLink="/signup" class="signup-link">Signup</a>
+    <a *ngIf="userRole == 'Super Admin'" routerLink="/signup" class="signup-link">Signup</a>
   </div>
 
 </mat-toolbar>
