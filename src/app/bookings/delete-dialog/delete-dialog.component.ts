@@ -3,7 +3,6 @@ import { BookingsService } from '../bookings.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-delete-dialog',
   templateUrl: './delete-dialog.component.html',
   styleUrl: './delete-dialog.component.css'
 })
@@ -21,8 +20,10 @@ export class DeleteDialogComponent {
   }
 
   deleteBooking(){
-    this.bookingService.deleteBooking(this.selectedRow._id).subscribe(res => {
-      this.dialogRef.close();
-    })
+    if(this.selectedRow){
+      this.bookingService.deleteBooking(this.selectedRow._id).subscribe(res => {
+        this.dialogRef.close();
+      })
+    }
   }
 }
