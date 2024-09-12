@@ -10,15 +10,8 @@ import { ViewBookingComponent } from "../view-booking/view-booking.component";
 import { Subject, Subscription } from "rxjs";
 import { AuthService } from "../../auth/auth.service";
 import { DatePipe } from "@angular/common";
+import { DeleteDialogComponent } from "../delete-dialog/delete-dialog.component";
 
-// const ELEMENT_DATA: any = [
-//   {SNo: 1, customerName: 'Mr Nitish Singh', vehicleModel: 'Honda Activa',address: 'Ranoplai',contact: '7905588677',serviceScheuleDate: '27/05/2024'},
-//   {SNo: 1, customerName: 'Mr Ranjeet Singh', vehicleModel: 'Honda Shine',address: 'Beniganj',contact: '7905588677',serviceScheuleDate: '27/05/2024'},
-//   {SNo: 1, customerName: 'Miss Shobha', vehicleModel: 'Bajaj Pulsar',address: 'Rekabganj',contact: '7905588677',serviceScheuleDate: '27/05/2024'},
-//   {SNo: 1, customerName: 'Mr Raj Kumar', vehicleModel: 'TVS Jupiter',address: 'Chowk',contact: '7905588677',serviceScheuleDate: '27/05/2024'},
-//   {SNo: 1, customerName: 'Mr Krishna Jay', vehicleModel: 'Royal Enfiled',address: 'Ayodhya',contact: '7905588677',serviceScheuleDate: '27/05/2024'}
-
-// ];
 
 @Component({
   selector:'app-booking-list',
@@ -29,8 +22,7 @@ import { DatePipe } from "@angular/common";
 export class BookingListComponent implements OnInit, OnDestroy{
   bookings :any= []
   dataSource:any;
-  displayedColumns:string[]=["S.No.","name", "vehicleModel","address","contact", "date",
-     "status", "actions"]
+  displayedColumns:string[]=["S.No.","name", "vehicleModel","address","contact", "date","status", "actions"]
   @ViewChild(MatPaginator) paginator!:MatPaginator
   isLoading:boolean=false;
   authStatusSubs!:Subscription
@@ -56,15 +48,6 @@ export class BookingListComponent implements OnInit, OnDestroy{
       }
     )
     this.getBookings()
-    // if(this.tabName == "Bookings"){
-    //   this.getBookings()
-    // }else if(this.tabName == "Completed Service"){
-    //   this.getCompletedService()
-
-    // }else if(this.tabName == "Todays Service"){
-    //   this.getTodaysBookings()
-    // }
-
 }
 
 setBookingData(){
@@ -119,16 +102,6 @@ setBookingData(){
   }
 
   addTask(){
-
-    // let config: MatDialogConfig = {
-    //   panelClass: "dialog-responsive",
-    //   data:{
-    //     type:"Add",
-    //     data:null
-    //   }
-    // }
-    // let addDialog = this.dialog.open(BookingCreateComponent,config)
-
     let addDialog = this.dialog.open(BookingCreateComponent, {
       panelClass: ['md:w-3/5', 'w-full'],
       maxHeight: '85vh',
@@ -137,9 +110,7 @@ setBookingData(){
     });
 
     addDialog.afterClosed().subscribe(item =>{
-      // this.getBookings()
       this.setBookingData()
-
     })
 
   }
@@ -153,18 +124,27 @@ setBookingData(){
     });
 
     editDialog.afterClosed().subscribe(item =>{
-      // this.getBookings()
       this.setBookingData()
     })
   }
 
   deleteTask(rowData:any){
-    this.isLoading = true;
-    this.bookingService.deleteBooking(rowData._id).subscribe(res => {
-      this.getBookings()
-    }, () => {
-      this.isLoading = false
+    let editDialog = this.dialog.open(DeleteDialogComponent, {
+      panelClass: ['md:w-3/5', 'w-full'],
+      data: {type:"datete",
+        data:rowData},
+    });
+
+    editDialog.afterClosed().subscribe(item =>{
+      this.setBookingData()
     })
+
+    // this.isLoading = true;
+    // this.bookingService.deleteBooking(rowData._id).subscribe(res => {
+    //   this.getBookings()
+    // }, () => {
+    //   this.isLoading = false
+    // })
   }
 
   markAsOld(data:any){
