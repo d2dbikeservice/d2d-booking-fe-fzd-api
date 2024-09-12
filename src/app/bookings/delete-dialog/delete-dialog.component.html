@@ -1,4 +1,3 @@
-<mat-dialog-content>
   <h2 mat-dialog-title>Delete Booking</h2>
   <p>Are you sure you want to delete
     <span class="booking-details">{{data.data?.customerName | titlecase}}</span>
@@ -7,9 +6,8 @@
       {{data.data?.vehicleModel | titlecase}}</span>
        ?
   </p>
-  <div mat-dialog-actions>
-    <button mat-raised-button mat-dialog-close  class="close-btn">Cancel</button>
-    <button mat-raised-button (click)="deleteBooking()" class="submit-btn">Delete Booking</button>
+  <div >
+    <button  mat-dialog-close  class="close-btn">Cancel</button>
+    <button  (click)="deleteBooking()" class="submit-btn">Delete Booking</button>
   </div>
-</mat-dialog-content>
 
