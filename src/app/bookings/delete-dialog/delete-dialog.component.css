@@ -8,7 +8,11 @@
   color: green;
   font-weight: 600;
 }
-mat-dialog-content{
-  padding: 0px 50px !important;
-  padding-bottom: 20px !important;
+.dic-box{
+  padding: 20px 50px !important;
+}
+
+.del-text{
+  font-size: 20px;
+  color: rgb(227, 51, 51);
 }
