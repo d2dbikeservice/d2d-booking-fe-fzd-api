@@ -8,7 +8,7 @@
        ?
   </p>
   <div >
-    <button mat-raised-button  mat-dialog-close  class="close-btn">Cancel</button>
+    <button mat-raised-button  (click)="close()"  class="close-btn">Cancel</button>
     <button mat-raised-button  (click)="deleteBooking()" class="submit-btn">Delete Booking</button>
   </div>
 </div>
