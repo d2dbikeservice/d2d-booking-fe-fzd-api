@@ -1,4 +1,4 @@
-<div class="dic-box">
+<!-- <div class="dic-box">
   <p class="del-text">Delete Booking</p>
   <p>Are you sure you want to delete
     <span class="booking-details">{{selectedRow.customerName | titlecase}}</span>
@@ -10,4 +10,23 @@
        <button mat-raised-button (click)="deleteBooking()" class="submit-btn">
        Delete
       </button>
-</div>
+</div> -->
+
+<mat-dialog-actions>
+  <h2 mat-dialog-title>Delete Booking</h2>
+  <div>
+    <button mat-raised-button mat-dialog-close class="close-btn">Cancel</button>
+  </div>
+</mat-dialog-actions>
+<mat-dialog-content>
+  <p>Are you sure you want to delete
+    <span class="booking-details">{{selectedRow.customerName | titlecase}}</span>
+     booking with vehicle
+     <span class="booking-details">
+      {{selectedRow.vehicleModel | titlecase}}</span>
+       ? </p>
+    <button mat-raised-button class="submit-btn">
+      Delete Booking
+    </button>
+</mat-dialog-content>
+
