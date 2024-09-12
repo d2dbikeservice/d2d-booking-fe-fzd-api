@@ -3,7 +3,7 @@ import { BookingsService } from "../bookings.service";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { DateAdapter } from "@angular/material/core";
-import { TitleCasePipe } from "@angular/common";
+import { DatePipe, TitleCasePipe } from "@angular/common";
 import { AuthService } from "../../auth/auth.service";
 
 
@@ -11,8 +11,7 @@ import { AuthService } from "../../auth/auth.service";
   selector: 'app-edit-booking',
   templateUrl: './edit-booking.component.html',
   styleUrl: './edit-booking.component.css',
-  providers: [
-    TitleCasePipe]
+  providers: [TitleCasePipe, DatePipe]
 })
 export class EditBookingComponent {
   taskForm = new FormGroup({
@@ -47,6 +46,7 @@ export class EditBookingComponent {
     private authService:AuthService,
     public titleCasePipe: TitleCasePipe,
     public builder:FormBuilder,
+    private datePipe:DatePipe,
     private dateAdapter: DateAdapter<Date> ){
       this.dateAdapter.setLocale('en-GB')
 
@@ -54,6 +54,8 @@ export class EditBookingComponent {
 
   ngOnInit(): void {
     let bookingData:any = this.data.data;
+    console.log('bookingData?.serviceScheduledDate', bookingData?.serviceScheduledDate);
+
     this.taskForm.setValue({
     customerName: bookingData?.customerName,
     vehicleModel: bookingData?.vehicleModel,
@@ -64,7 +66,7 @@ export class EditBookingComponent {
     totalBillAmount: bookingData?.totalBillAmount,
     totalPaidAmount: bookingData?.totalPaidAmount,
     serviceEnquiryDate:bookingData?.serviceEnquiryDate,
-    serviceScheduledDate:bookingData?.serviceScheduledDate,
+    serviceScheduledDate:this.datePipe.transform(bookingData?.serviceScheduledDate, 'yyyy-MM-dd'),
     serviceCompletedDate:bookingData?.serviceCompletedDate,
     comment:bookingData?.comment,
     assignedMechanic:bookingData?.assignedMechanic
@@ -83,8 +85,8 @@ export class EditBookingComponent {
         city:"ayodhya",
         contact:this.taskForm.controls.contact.value,
         serviceEnquiryDate:this.taskForm.controls.serviceEnquiryDate.value,
-        serviceScheduledDate:this.taskForm.controls.serviceScheduledDate.value,
-        serviceCompletedDate:this.taskForm.controls.serviceCompletedDate.value || null,
+        serviceScheduledDate:this.datePipe.transform(this.taskForm.controls.serviceScheduledDate.value, 'yyyy-MM-dd'),
+        serviceCompletedDate:this.datePipe.transform(this.taskForm.controls.serviceCompletedDate.value, 'yyyy-MM-dd') || null,
         status:this.taskForm.controls.status.value,
         totalBillAmount:this.taskForm.controls.totalBillAmount.value,
         totalPaidAmount:this.taskForm.controls.totalPaidAmount.value,

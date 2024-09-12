@@ -21,15 +21,18 @@ export class HeaderComponent implements OnInit, OnDestroy{
     ){}
 
   ngOnInit() {
-    let userData:any = localStorage.getItem('userData');
-
+    // let userData:any = localStorage.getItem('userData');
+    let userData = this.authService.getLoggedinDetails()
+    this.userName = userData.userName
+    this.userRole = userData.userRole
     this.userIsAuthencated = this.authService.getIsAuth()
       this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthencated => {
+        console.log("logging............");
         this.userIsAuthencated = isAuthencated
-        this.userName = userData ? JSON.parse(userData).userName : ''
-        this.userRole = userData ? JSON.parse(userData).userRole : ''
+
+
       })
   }
 

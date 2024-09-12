@@ -4,12 +4,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { DateAdapter } from '@angular/material/core';
 import { AuthService } from "../../auth/auth.service";
+import { DatePipe } from "@angular/common";
 
 
 @Component({
   selector:'app-booking-create',
   templateUrl:'./booking-create.component.html',
   styleUrls:['./booking-create.component.css'],
+  providers:[DatePipe]
 })
 export class BookingCreateComponent{
   taskForm = new FormGroup({
@@ -26,6 +28,7 @@ export class BookingCreateComponent{
   constructor(private bookingService:BookingsService,private dialogRef: MatDialogRef<BookingCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     public builder:FormBuilder,
+    private datePipe:DatePipe,
     private dateAdapter: DateAdapter<Date>, private authService:AuthService ){
         this.dateAdapter.setLocale('en-GB')
   }
@@ -46,7 +49,7 @@ export class BookingCreateComponent{
           city:"ayodhya",
           contact:this.taskForm.controls.contact.value,
           serviceEnquiryDate:new Date(),
-          serviceScheduledDate:this.taskForm.controls.serviceScheduledDate.value,
+          serviceScheduledDate:this.datePipe.transform(this.taskForm.controls.serviceScheduledDate.value, 'yyyy-MM-dd'),
           serviceCompletedDate:'',
           status:"Enquiry",
           totalBillAmount:0,
