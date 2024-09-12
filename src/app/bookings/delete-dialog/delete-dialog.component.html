@@ -1,13 +1,15 @@
-  <h2 mat-dialog-title>Delete Booking</h2>
+<div class="del-box">
+  <h2 class="del-text">Delete Booking</h2>
   <p>Are you sure you want to delete
-    <span class="booking-details">{{data.data?.customerName}}</span>
+    <span class="booking-details">{{data.data?.customerName.toUpperCase()}}</span>
      booking with vehicle
      <span class="booking-details">
-      {{data.data?.vehicleModel}}</span>
+      {{data.data?.vehicleModel.toUpperCase()}}</span>
        ?
   </p>
   <div >
-    <button  mat-dialog-close  class="close-btn">Cancel</button>
-    <button  (click)="deleteBooking()" class="submit-btn">Delete Booking</button>
+    <button mat-raised-button  mat-dialog-close  class="close-btn">Cancel</button>
+    <button mat-raised-button  (click)="deleteBooking()" class="submit-btn">Delete Booking</button>
   </div>
+</div>
 
