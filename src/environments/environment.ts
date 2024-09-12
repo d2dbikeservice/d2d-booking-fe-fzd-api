@@ -1,4 +1,4 @@
 export const environment = {
   production:false,
-  apiUrl:"http://localhost:3001/api"
+  apiUrl:"https://d2d-booking-be-fzd-api-4.onrender.com/api"
 }

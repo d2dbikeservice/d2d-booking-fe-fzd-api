@@ -1,6 +1,6 @@
 export const environment = {
   production:true,
-  apiUrl:"https://d2d-node-env.eba-cvknkhje.ap-southeast-2.elasticbeanstalk.com/api"
+  apiUrl:"https://d2d-booking-be-fzd-api-4.onrender.com/api"
 }
 
 

@@ -5,8 +5,7 @@
   <div *ngIf="userIsAuthencated">
     <span>Welcome {{userName}}</span>
     <button  mat-raised-button class="logout-btn" (click)="logout()">Logout</button>
-    <a routerLink="/signup" class="signup-link">Signup</a>
-
+    <a *ngIf="userName == 'Super Admin'" routerLink="/signup" class="signup-link">Signup</a>
   </div>
 
 </mat-toolbar>

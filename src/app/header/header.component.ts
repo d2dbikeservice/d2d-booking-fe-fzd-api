@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   userIsAuthencated = false;
   private authListenerSubs!:Subscription
   userName:string=''
+  userRole:string=''
 
   constructor(
     private router:Router,
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   ngOnInit() {
     let userData:any = localStorage.getItem('userData');
     this.userName = userData ? JSON.parse(userData).userName : ''
+    this.userName = userData ? JSON.parse(userData).userRole : ''
     this.userIsAuthencated = this.authService.getIsAuth()
       this.authListenerSubs = this.authService
       .getAuthStatusListener()
