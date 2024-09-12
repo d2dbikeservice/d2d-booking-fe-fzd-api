@@ -4,15 +4,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { DateAdapter } from '@angular/material/core';
 import { AuthService } from "../../auth/auth.service";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from
-'@angular/material-moment-adapter';
+
 
 @Component({
   selector:'app-booking-create',
   templateUrl:'./booking-create.component.html',
   styleUrls:['./booking-create.component.css'],
-  providers: [
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }}]
 })
 export class BookingCreateComponent{
   taskForm = new FormGroup({

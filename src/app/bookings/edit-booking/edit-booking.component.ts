@@ -5,8 +5,6 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angula
 import { DateAdapter } from "@angular/material/core";
 import { TitleCasePipe } from "@angular/common";
 import { AuthService } from "../../auth/auth.service";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from
-'@angular/material-moment-adapter';
 
 
 @Component({
@@ -14,8 +12,7 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from
   templateUrl: './edit-booking.component.html',
   styleUrl: './edit-booking.component.css',
   providers: [
-    TitleCasePipe,
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }}]
+    TitleCasePipe]
 })
 export class EditBookingComponent {
   taskForm = new FormGroup({
