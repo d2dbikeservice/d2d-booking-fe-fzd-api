@@ -7,12 +7,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './delete-dialog.component.css'
 })
 export class DeleteDialogComponent implements OnInit {
-  selectedRow:any
-  constructor(
-    private bookingService:BookingsService,
-    @Inject(MAT_DIALOG_DATA) public data:any,
-    private dialogRef: MatDialogRef<DeleteDialogComponent>
-  ){}
+  selectedRow!:any
+  constructor(private bookingService:BookingsService,@Inject(MAT_DIALOG_DATA) public data:any,private dialogRef: MatDialogRef<DeleteDialogComponent>){
+
+  }
 
   ngOnInit(): void {
     this.selectedRow = this.data.data
