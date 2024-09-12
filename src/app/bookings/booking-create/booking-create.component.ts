@@ -19,10 +19,7 @@ export class BookingCreateComponent{
     vehicleModel: new FormControl('',Validators.required),
     address: new FormControl('',Validators.required),
     contact: new FormControl( '',[Validators.required, Validators.pattern('^[0-9]{10,10}$')]),
-
-
-
-    serviceScheduledDate: new FormControl('',Validators.required),
+    serviceScheduledDate: new FormControl(new Date(),Validators.required),
   });
 
   constructor(private bookingService:BookingsService,private dialogRef: MatDialogRef<BookingCreateComponent>,
@@ -40,7 +37,9 @@ export class BookingCreateComponent{
 
   onBookService(){
     let userData = this.authService.getLoggedinDetails();
-    console.log(userData, userData.userName);
+    let temp:any = this.taskForm.controls.serviceScheduledDate.value
+    const d = new Date(temp)
+    const isoString = d.toISOString();
 
     const bookingData:any={
         customerName:this.taskForm.controls.customerName.value,
@@ -49,7 +48,8 @@ export class BookingCreateComponent{
           city:"ayodhya",
           contact:this.taskForm.controls.contact.value,
           serviceEnquiryDate:new Date(),
-          serviceScheduledDate:this.datePipe.transform(this.taskForm.controls.serviceScheduledDate.value, 'yyyy-MM-dd'),
+          // serviceScheduledDate:this.datePipe.transform(this.taskForm.controls.serviceScheduledDate.value, 'yyyy-MM-dd'),
+          serviceScheduledDate:isoString,
           serviceCompletedDate:'',
           status:"Enquiry",
           totalBillAmount:0,
@@ -60,7 +60,6 @@ export class BookingCreateComponent{
           assignedMechanic:'',
           updatedBy:userData.userName,
     }
-    console.log('this.taskForm', this.taskForm);
 
     if(this.taskForm.invalid){
       return
@@ -68,8 +67,6 @@ export class BookingCreateComponent{
 
     this.bookingService.addBooking(bookingData).subscribe(res => {
       this.dialogRef.close();
-      console.log("Booked", res);
-
     })
   }
 
@@ -77,9 +74,6 @@ export class BookingCreateComponent{
     this.onBookService()
   }
   // updateTask(){
-  //   console.log('taskForm', this.taskForm);
-
-  //   // console.log('formData', formData);
 
   // }
   resetForm(){

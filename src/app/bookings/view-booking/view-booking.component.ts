@@ -17,7 +17,6 @@ export class ViewBookingComponent implements OnInit{
     }
     ngOnInit(): void {
         this.bookingData = this.data.data;
-        console.log('key', this.bookingData);
         let result = [
           {
             name:'Customer Name',

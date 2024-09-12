@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
+import { UserDataService } from './../userData.service';
 
 @Component({
   selector:'app-header',
@@ -17,23 +18,26 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   constructor(
     private router:Router,
-    private authService:AuthService
+    private authService:AuthService,
+    private userDataService:UserDataService,
+
     ){}
 
   ngOnInit() {
     // let userData:any = localStorage.getItem('userData');
-    let userData = this.authService.getLoggedinDetails()
+    let userData:any = this.userDataService.getLoggedData();
     this.userName = userData.userName
     this.userRole = userData.userRole
+
     this.userIsAuthencated = this.authService.getIsAuth()
-      this.authListenerSubs = this.authService
-      .getAuthStatusListener()
-      .subscribe(isAuthencated => {
-        console.log("logging............");
-        this.userIsAuthencated = isAuthencated
+    this.authListenerSubs = this.authService
+    .getAuthStatusListener()
+    .subscribe(isAuthencated => {
+      // let userData = this.authService.getLoggedinDetails()
 
 
-      })
+      this.userIsAuthencated = isAuthencated
+    })
   }
 
   logout(){

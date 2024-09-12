@@ -14,7 +14,6 @@
 
 //   constructor(@Inject(MAT_DIALOG_DATA) public data:any){
 //     this.customerDetails = data
-//     console.log('this.customerDetails', this.customerDetails.customerName);
 
 //   }
 //   items: Array<{ description: string, amount: any }> = [{ description: '', amount: null }];

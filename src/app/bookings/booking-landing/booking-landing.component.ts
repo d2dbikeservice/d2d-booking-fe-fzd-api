@@ -17,7 +17,6 @@ export class BookingLandingComponent {
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent){
-    console.log('tabChangeEvent', tabChangeEvent.tab.textLabel);
     this.tabName = tabChangeEvent.tab.textLabel
     this.clickSubject.next(this.tabName);
   }

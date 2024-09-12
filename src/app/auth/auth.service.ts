@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
 import { environment } from './../../environments/environment';
+import { UserDataService } from "../userData.service";
 
 
 const BACKEND_URL = environment.apiUrl + "/user"
@@ -13,12 +14,17 @@ const BACKEND_URL = environment.apiUrl + "/user"
 @Injectable({providedIn:'root'})
 export class AuthService{
   private token:any;
+  private userDetailsLogged:any;
   private authStatusListener= new Subject<boolean>
   private isAuthencated = false
   private tokenTimer:any
 
 
-  constructor(private http:HttpClient,private router:Router,private toastr:ToastrService){
+
+  constructor(
+    private http:HttpClient,
+    private dataService:UserDataService,
+    private router:Router,private toastr:ToastrService){
 
   }
 
@@ -46,17 +52,16 @@ export class AuthService{
     this.http.post<{token:string}>(BACKEND_URL +'/login',userData)
     .subscribe(response => {
         let result:any=response
-        console.log('result.userData.userToken', result.userData?.userToken);
-
         this.token = result.userData.userToken;
         if(this.token){
           this.isAuthencated = true;
-          // this.toastr.success("Loggeg In Successfully");
           const expiresInDuration = result.userData.expiresIn;
+
+          this.dataService.setLoggedData(result.userData)
           this.setAuthTimer(expiresInDuration)
           this.authStatusListener.next(true);
+          this.userDetailsLogged = this.getLoggedinDetails()
           this.saveAuthData(result)
-
           this.router.navigate(['/'])
         }
       }, error => {
@@ -66,7 +71,6 @@ export class AuthService{
 
   authAuthUser(){
     const authInformation:any = this.getAuthData()
-
     if(!authInformation){
       return
     }
@@ -86,11 +90,11 @@ export class AuthService{
   }
 
   getLoggedinDetails(){
-    const userData:any = localStorage.getItem('userData')
-    if(!userData){
+    this.userDetailsLogged = localStorage.getItem('userData')
+    if(!this.userDetailsLogged){
       return ''
     }
-    return JSON.parse(userData)
+    return JSON.parse(this.userDetailsLogged)
   }
 
   logout(){
@@ -99,6 +103,8 @@ export class AuthService{
     this.authStatusListener.next(false);
     localStorage.removeItem("userData");
     clearTimeout(this.tokenTimer)
+    this.dataService.setLoggedData('')
+
     this.clearAuthData()
     this.router.navigate(['/login'])
   }
@@ -112,11 +118,14 @@ export class AuthService{
 
   private saveAuthData(result:any){
     localStorage.setItem("userData", JSON.stringify(result.userData))
+    this.userDetailsLogged = this.getLoggedinDetails()
 
   }
 
   private clearAuthData(){
     localStorage.removeItem("userData")
+    this.userDetailsLogged = this.getLoggedinDetails()
+
 
   }
 
