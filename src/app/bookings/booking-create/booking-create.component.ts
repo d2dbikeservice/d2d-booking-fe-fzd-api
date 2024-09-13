@@ -19,7 +19,7 @@ export class BookingCreateComponent{
     vehicleModel: new FormControl('',Validators.required),
     address: new FormControl('',Validators.required),
     contact: new FormControl( '',[Validators.required, Validators.pattern('^[0-9]{10,10}$')]),
-    serviceScheduledDate: new FormControl(new Date(),Validators.required),
+    serviceScheduledDate: new FormControl('',Validators.required),
   });
 
   constructor(private bookingService:BookingsService,private dialogRef: MatDialogRef<BookingCreateComponent>,
@@ -27,7 +27,8 @@ export class BookingCreateComponent{
     public builder:FormBuilder,
     private datePipe:DatePipe,
     private dateAdapter: DateAdapter<Date>, private authService:AuthService ){
-        this.dateAdapter.setLocale('en-GB')
+        // this.dateAdapter.setLocale('en-GB')
+
   }
 
   ngOnInit(): void {
@@ -39,6 +40,10 @@ export class BookingCreateComponent{
     let userData = this.authService.getLoggedinDetails();
     let temp:any = this.taskForm.controls.serviceScheduledDate.value
     const d = new Date(temp)
+    d.setHours(2,29,29,999);
+    console.log('date', d);
+
+
     const isoString = d.toISOString();
 
     const bookingData:any={
@@ -48,8 +53,7 @@ export class BookingCreateComponent{
           city:"ayodhya",
           contact:this.taskForm.controls.contact.value,
           serviceEnquiryDate:new Date(),
-          // serviceScheduledDate:this.datePipe.transform(this.taskForm.controls.serviceScheduledDate.value, 'yyyy-MM-dd'),
-          serviceScheduledDate:isoString,
+          serviceScheduledDate:this.taskForm.controls.serviceScheduledDate.value,
           serviceCompletedDate:'',
           status:"Enquiry",
           totalBillAmount:0,
@@ -70,12 +74,6 @@ export class BookingCreateComponent{
     })
   }
 
-  addTask(){
-    this.onBookService()
-  }
-  // updateTask(){
-
-  // }
   resetForm(){
     this.taskForm.reset()
   }

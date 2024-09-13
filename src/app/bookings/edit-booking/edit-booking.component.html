@@ -9,7 +9,7 @@
   <mat-dialog-content>
     <form
       [formGroup]="taskForm"
-      (ngSubmit)="addTask()"
+      (ngSubmit)="onUpdate()"
       class="task-form signup-form"
     >
       <mat-form-field class="task-field">
@@ -129,16 +129,18 @@
       </mat-form-field>
 
       <mat-form-field class="task-field">
-        <mat-label>Scheduled Date</mat-label>
-        <input matInput [matDatepicker]="scheduledDate" name="serviceScheduledDate" formControlName="serviceScheduledDate" />
+        <mat-label>Select Scheduled Date</mat-label>
+        <input matInput readonly [matDatepicker]="scheduledDate" name="serviceScheduledDate"
+        formControlName="serviceScheduledDate" (click)="scheduledDate.open()" />
         <mat-hint>DD/MM/YYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="scheduledDate"></mat-datepicker-toggle>
         <mat-datepicker #scheduledDate></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="task-field">
-        <mat-label>Completed Date</mat-label>
-        <input matInput [matDatepicker]="completedDate" name="serviceCompletedDate" formControlName="serviceCompletedDate" />
+        <mat-label>Select Completed Date</mat-label>
+        <input matInput readonly [matDatepicker]="completedDate" name="serviceCompletedDate"
+         formControlName="serviceCompletedDate" (click)="completedDate.open()" />
         <mat-hint>DD/MM/YYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="completedDate"></mat-datepicker-toggle>
         <mat-datepicker #completedDate></mat-datepicker>

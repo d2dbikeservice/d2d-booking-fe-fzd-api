@@ -8,7 +8,7 @@
 <mat-dialog-content>
   <form
     [formGroup]="taskForm"
-    (ngSubmit)="addTask()"
+    (ngSubmit)="onBookService()"
     class="task-form signup-form"
   >
     <mat-form-field class="task-field">
@@ -58,13 +58,16 @@
       <mat-error *ngIf="taskForm.get('contact')?.touched && taskForm.get('contact')?.hasError('required')"> Contact is Required!</mat-error>
       <mat-error *ngIf="taskForm.get('contact')?.touched && taskForm.get('contact')?.hasError('pattern')"> Contact must be 10 digits.</mat-error>
     </mat-form-field>
+
     <mat-form-field class="task-field">
-      <mat-label>Booking Date</mat-label>
-      <input matInput [matDatepicker]="picker" name="serviceScheduledDate" formControlName="serviceScheduledDate" />
+      <mat-label>Select Booking Date</mat-label>
+
+      <input matInput readonly [matDatepicker]="picker" name="serviceScheduledDate" formControlName="serviceScheduledDate" (click)="picker.open()" />
       <mat-hint>DD/MM/YYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
     <button mat-raised-button class="submit-btn">
       {{ data.type == "Add" ? "Book Service" : "Update Service" }}
     </button>

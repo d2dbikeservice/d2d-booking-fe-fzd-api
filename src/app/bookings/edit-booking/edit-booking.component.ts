@@ -24,7 +24,7 @@ export class EditBookingComponent {
     totalBillAmount: new FormControl(0,),
     totalPaidAmount: new FormControl(0,),
     serviceEnquiryDate: new FormControl({ disabled: true, value: '' }),
-    serviceScheduledDate: new FormControl(new Date(),Validators.required),
+    serviceScheduledDate: new FormControl('',Validators.required),
     serviceCompletedDate: new FormControl(''),
     comment: new FormControl(''),
     assignedMechanic:new FormControl('')
@@ -48,39 +48,31 @@ export class EditBookingComponent {
     public builder:FormBuilder,
     private datePipe:DatePipe,
     private dateAdapter: DateAdapter<Date> ){
-      this.dateAdapter.setLocale('en-GB')
-
+      // this.dateAdapter.setLocale('en-GB')
   }
 
   ngOnInit(): void {
     let bookingData:any = this.data.data;
-    let newDate= new Date(bookingData?.serviceScheduledDate);
-    newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
 
     this.taskForm.setValue({
-    customerName: bookingData?.customerName,
-    vehicleModel: bookingData?.vehicleModel,
-    address: bookingData?.address,
-    contact:bookingData?.contact,
-    status:this.titleCasePipe.transform(bookingData?.status),
-    isBillPaid: bookingData?.isBillPaid,
-    totalBillAmount: bookingData?.totalBillAmount,
-    totalPaidAmount: bookingData?.totalPaidAmount,
-    serviceEnquiryDate:bookingData?.serviceEnquiryDate,
-    serviceScheduledDate:bookingData.serviceScheduledDate,
-    serviceCompletedDate:bookingData?.serviceCompletedDate,
-    comment:bookingData?.comment,
-    assignedMechanic:bookingData?.assignedMechanic
+      customerName: bookingData?.customerName,
+      vehicleModel: bookingData?.vehicleModel,
+      address: bookingData?.address,
+      contact:bookingData?.contact,
+      status:this.titleCasePipe.transform(bookingData?.status),
+      isBillPaid: bookingData?.isBillPaid,
+      totalBillAmount: bookingData?.totalBillAmount,
+      totalPaidAmount: bookingData?.totalPaidAmount,
+      serviceEnquiryDate:bookingData?.serviceEnquiryDate,
+      serviceScheduledDate:bookingData.serviceScheduledDate,
+      serviceCompletedDate:bookingData?.serviceCompletedDate,
+      comment:bookingData?.comment,
+      assignedMechanic:bookingData?.assignedMechanic
     });
-
-
   }
 
-  onBookService(){
+  onUpdate(){
     let userData = this.authService.getLoggedinDetails();
-    let temp:any = this.taskForm.controls.serviceScheduledDate.value
-    const d = new Date(temp)
-    const isoString = d.toISOString();
 
     const bookingData:any={
        id:this.data.data._id,
@@ -90,8 +82,8 @@ export class EditBookingComponent {
         city:"ayodhya",
         contact:this.taskForm.controls.contact.value,
         serviceEnquiryDate:this.taskForm.controls.serviceEnquiryDate.value,
-        serviceScheduledDate:isoString,
-        serviceCompletedDate:this.datePipe.transform(this.taskForm.controls.serviceCompletedDate.value, 'yyyy-MM-dd') || null,
+        serviceScheduledDate:this.taskForm.controls.serviceScheduledDate.value,
+        serviceCompletedDate:this.taskForm.controls.serviceCompletedDate.value,
         status:this.taskForm.controls.status.value,
         totalBillAmount:this.taskForm.controls.totalBillAmount.value,
         totalPaidAmount:this.taskForm.controls.totalPaidAmount.value,
@@ -110,21 +102,5 @@ export class EditBookingComponent {
       this.dialogRef.close();
     })
   }
-
-   formatDateToISO(date:any) {
-    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
-  }
-
-  addTask(){
-    this.onBookService()
-  }
-  // updateTask(){
-
-  // }
-  resetForm(){
-    this.taskForm.reset()
-  }
-
-
 
 }
