@@ -26,3 +26,19 @@ mat-dialog-content{
   color: white;
   float: right;
 }
+
+.booking-date{
+  width: 200px;
+  padding: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.date-wrappar{
+  background-color: #dadfea;
+  padding: 8px 14px;
+  border-bottom:1px solid black;
+  margin-bottom: 10px;
+}
+.selectdate-text{
+  font-size: 16px;
+}

@@ -128,14 +128,21 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="task-field">
+      <!-- <mat-form-field class="task-field">
         <mat-label>Select Scheduled Date</mat-label>
         <input matInput readonly [matDatepicker]="scheduledDate" name="serviceScheduledDate"
         formControlName="serviceScheduledDate" (click)="scheduledDate.open()" />
         <mat-hint>DD/MM/YYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="scheduledDate"></mat-datepicker-toggle>
         <mat-datepicker #scheduledDate></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field> -->
+
+      <div class="date-wrappar">
+
+        <mat-label class="selectdate-text">Select Booking Date*</mat-label>
+        <input class="booking-date" type="date" id="serviceScheduledDate" name="serviceScheduledDate"
+        formControlName="serviceScheduledDate">
+      </div>
 
       <mat-form-field class="task-field">
         <mat-label>Select Completed Date</mat-label>
