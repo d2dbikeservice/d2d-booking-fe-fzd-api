@@ -139,19 +139,24 @@
 
       <div class="date-wrappar">
 
-        <mat-label class="selectdate-text">Select Booking Date*</mat-label>
-        <input class="booking-date" type="date" id="serviceScheduledDate" name="serviceScheduledDate"
+        <mat-label class="selectdate-text">Select Service Date*</mat-label>
+        <input matInput class="booking-date" type="date" id="serviceScheduledDate" name="serviceScheduledDate"
         formControlName="serviceScheduledDate">
       </div>
 
-      <mat-form-field class="task-field">
+      <!-- <mat-form-field class="task-field">
         <mat-label>Select Completed Date</mat-label>
         <input matInput readonly [matDatepicker]="completedDate" name="serviceCompletedDate"
          formControlName="serviceCompletedDate" (click)="completedDate.open()" />
         <mat-hint>DD/MM/YYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="completedDate"></mat-datepicker-toggle>
         <mat-datepicker #completedDate></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field> -->
+      <div class="date-wrappar">
+        <mat-label class="selectdate-text">Select Completed Date*</mat-label>
+        <input matInput class="booking-date" type="date" id="serviceCompletedDate" name="serviceCompletedDate"
+        formControlName="serviceCompletedDate">
+      </div>
 
       <mat-form-field class="task-field">
         <mat-label>Comment</mat-label>

@@ -64,8 +64,8 @@ export class EditBookingComponent {
       totalBillAmount: bookingData?.totalBillAmount,
       totalPaidAmount: bookingData?.totalPaidAmount,
       serviceEnquiryDate:bookingData?.serviceEnquiryDate,
-      serviceScheduledDate:bookingData.serviceScheduledDate,
-      serviceCompletedDate:bookingData?.serviceCompletedDate,
+      serviceScheduledDate:bookingData.serviceScheduledDate.split('T')[0],
+      serviceCompletedDate:bookingData.serviceCompletedDate ? bookingData.serviceCompletedDate.split('T')[0] : '',
       comment:bookingData?.comment,
       assignedMechanic:bookingData?.assignedMechanic
     });
